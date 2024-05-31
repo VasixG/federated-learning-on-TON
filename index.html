@@ -50,7 +50,7 @@
 </head>
 
 <body>
-    <div class="circle" onclick="toggleInfoBox(this)">
+    <div id = "circle_master" class="circle" onclick="toggleInfoBox(this)">
         Master node
         <div class="info-box">
             <p id="master_progress">0/1</p>
@@ -58,9 +58,9 @@
             <p>Metric: 30</p>
         </div>
     </div>
-    <div class="circle" onclick="toggleInfoBox(this)">
+    <div id = "circle_node" class="circle" onclick="toggleInfoBox(this)">
         Node 1
-        <div class="info-box">
+        <div id="info-boxx" class="info-box">
             <p id="node_progress"></p>
             <p>Memory: 1024MB</p>
             <p>Metric: 50</p>
@@ -83,17 +83,19 @@
             socket.onmessage = function(event) {
                 var progressDiv = document.getElementById("node_progress");
                 progressDiv.innerText = event.data;
+                if (event.data === "Training completed" ){
+                    var circleMaster = document.getElementById("circle_master");
+                    var circleNode = document.getElementById("circle_node");
+                    var progressMaster = document.getElementById("master_progress");
+                    circleMaster.style.backgroundColor = document.getElementById("info-boxx").style.backgroundColor;
+                    circleNode.style.backgroundColor = document.getElementById("info-boxx").style.backgroundColor;
+                    progressMaster.innerText = "1/1";
+                }
             };
             socket.onerror = function(error) {
                 console.error(`[error] ${error.message}`);
             };
-            socket.onmessage = function(e){
-                if (e.data === "Training completed" ){
-                    console.log("logger");
-                    var progressMaster = document.getElementById("master_progress");
-                    progressDiv.innerText = "1/1";
-                }
-            }
+            
         }
     </script>
 </body>
