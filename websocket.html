@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neural Network Training Progress</title>
+</head>
+<body>
+    <h1>Training Progress</h1>
+    <div id="progress"></div>
+
+    <script>
+        var socket = new WebSocket("ws://localhost:65432");
+
+        socket.onopen = function() {
+            console.log("Connection established.");
+        };
+
+        socket.onmessage = function(event) {
+            var progressDiv = document.getElementById("progress");
+            var message = document.createElement("p");
+            message.textContent = event.data;
+            progressDiv.appendChild(message);
+        };
+
+        socket.onclose = function(event) {
+            if (event.wasClean) {
+                console.log(`Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+            } else {
+                console.error('Connection died');
+            }
+        };
+
+        socket.onerror = function(error) {
+            console.error(`[error] ${error.message}`);
+        };
+    </script>
+</body>
+</html>
