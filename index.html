@@ -33,7 +33,9 @@
 
         .info-box {
             position: absolute;
-            top: 120px;
+            top: 50%;
+            left: 120px;
+            transform: translateY(-50%);
             width: 200px;
             background-color: var(--tg-theme-secondary-bg-color);
             color: var(--tg-theme-text-color);
@@ -41,19 +43,23 @@
             padding: 10px;
             display: none;
             border-radius: 8px;
+            z-index: 10;
+            /* Ensure the info box is on the foreground */
         }
     </style>
 </head>
 
 <body>
     <div class="circle" onclick="toggleInfoBox(this)">
-        Master node
+        Circle 1
         <div class="info-box">
-            <p>Progress: 0/1</p>
+            <p>Progress: 70%</p>
+            <p>Memory: 512MB</p>
+            <p>Metric: 30</p>
         </div>
     </div>
     <div class="circle" onclick="toggleInfoBox(this)">
-        Node 1
+        Circle 2
         <div class="info-box">
             <p>Progress: 40%</p>
             <p>Memory: 1024MB</p>
