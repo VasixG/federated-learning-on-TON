@@ -87,9 +87,11 @@
             socket.onerror = function(error) {
                 console.error(`[error] ${error.message}`);
             };
-            if (event.data === "Training completed" ){
-                var progressMaster = document.getElementById("master_progress");
-                progressDiv.innerText = "1/1";
+            socket.onmessage = function(event){
+                if (event.data === "Training completed" ){
+                    var progressMaster = document.getElementById("master_progress");
+                    progressDiv.innerText = "1/1";
+                }
             }
         }
     </script>
