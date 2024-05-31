@@ -53,7 +53,7 @@
     <div class="circle" onclick="toggleInfoBox(this)">
         Master node
         <div class="info-box">
-            <p>Progress: 0 of 1</p>
+            <p id="master_progress">0/1</p>
             <p>Memory: 512MB</p>
             <p>Metric: 30</p>
         </div>
@@ -87,6 +87,10 @@
             socket.onerror = function(error) {
                 console.error(`[error] ${error.message}`);
             };
+            if (event.data === "Training completed" ){
+                var progressMaster = document.getElementById("master_progress");
+                progressDiv.innerText = "1/1";
+            }
         }
     </script>
 </body>
