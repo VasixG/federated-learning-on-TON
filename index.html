@@ -61,13 +61,15 @@
     <div class="circle" onclick="toggleInfoBox(this)">
         Node 1
         <div class="info-box">
-            <p>Progress: 0%</p>
+            <p id="node_progress"></p>
             <p>Memory: 1024MB</p>
             <p>Metric: 50</p>
         </div>
     </div>
 
     <script>
+        var socket = new WebSocket("ws://localhost:65432");
+
         function toggleInfoBox(element) {
             const infoBox = element.querySelector('.info-box');
             if (infoBox.style.display === 'none' || infoBox.style.display === '') {
@@ -75,6 +77,16 @@
             } else {
                 infoBox.style.display = 'none';
             }
+            socket.onopen = function() {
+                console.log("Connection established.");
+            };
+            socket.onmessage = function(event) {
+                var progressDiv = document.getElementById("node_progress");
+                progressDiv.innerText = event.data;
+            };
+            socket.onerror = function(error) {
+                console.error(`[error] ${error.message}`);
+            };
         }
     </script>
 </body>

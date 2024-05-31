@@ -13,5 +13,6 @@ async def train_neural_network(websocket, path):
 
 start_server = websockets.serve(train_neural_network, 'localhost', 65432)
 
+
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
