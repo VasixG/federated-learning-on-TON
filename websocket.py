@@ -5,7 +5,7 @@ import time
 async def train_neural_network(websocket, path):
     epochs = 100
     for epoch in range(1, epochs + 1):
-        await asyncio.sleep(0.01)  # Simulate time taken for each epoch
+        await asyncio.sleep(0.09)  # Simulate time taken for each epoch
         progress = f" {epoch}%"
         print(progress)
         await websocket.send(progress)

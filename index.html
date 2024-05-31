@@ -85,13 +85,13 @@
             };
             socket.onmessage = function(event) {
                 var progressDiv = document.getElementById("node_progress");
+                var circleMaster = document.getElementById("circle_master");
+                var circleNode = document.getElementById("circle_node");
+                var progressMaster = document.getElementById("master_progress");
                 progressDiv.innerText = event.data;
                 if (event.data === "Training completed" ){
-                    var circleMaster = document.getElementById("circle_master");
-                    var circleNode = document.getElementById("circle_node");
-                    var progressMaster = document.getElementById("master_progress");
-                    circleMaster.style.background = '#000000'; /*document.getElementById("info-boxx").style.backgroundColor;*/
-                    circleNode.style.background = '#000000';/*document.getElementById("info-boxx").style.backgroundColor;*/
+                    circleMaster.style.background = '#808080'; /*document.getElementById("info-boxx").style.backgroundColor;*/
+                    circleNode.style.background = '#808080';/*document.getElementById("info-boxx").style.backgroundColor;*/
                     progressMaster.innerText = "1/1";
                 }
             };
